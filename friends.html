@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+    <title>Мои друзья — DrillClock</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh; min-height: 100dvh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 16px 14px 30px; display: flex; justify-content: center;
+            background-image: url('fon.webp');
+            background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;
+            background-color: #0b0e1a;
+            margin: 0;
+        }
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+            background-image: url('fon.webp');
+            background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;
+            filter: blur(12px); transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 480px; width: 100%;
+            opacity: 0;
+            animation: zoomIn 0.6s ease forwards;
+        }
+
+        @keyframes zoomIn {
+            0% { opacity: 0; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .container.exit {
+            animation: zoomOut 0.5s ease forwards;
+        }
+
+        @keyframes zoomOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.7); }
+        }
+
+        .back-btn {
+            display: inline-block; background: rgba(255,215,100,0.15); color: #f7e9b0;
+            padding: 10px 20px; border-radius: 30px; text-decoration: none; font-size: 0.9rem;
+            margin-bottom: 16px; border: 1px solid rgba(255,215,100,0.2); backdrop-filter: blur(4px);
+        }
+        .back-btn:active { transform: scale(0.95); }
+
+        .friend-card {
+            background: rgba(13, 17, 28, 0.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+            border-radius: 24px; padding: 20px 18px; margin-bottom: 14px;
+            border: 1px solid rgba(255, 215, 100, 0.08); box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex; align-items: center; gap: 16px;
+        }
+        .friend-card .avatar {
+            width: 60px; height: 60px; border-radius: 50%; flex-shrink: 0;
+            background: #1a2236; border: 2px solid rgba(255,215,100,0.3);
+            object-fit: cover;
+        }
+        .friend-card .info { flex: 1; }
+        .friend-card .name {
+            font-size: 1.2rem; font-weight: 700; color: #f7e9b0;
+            text-shadow: 0 0 12px #fbbf24, 0 0 20px rgba(251, 191, 36, 0.1);
+        }
+        .friend-card .desc {
+            color: #c8d0e8; font-size: 0.85rem; line-height: 1.4; margin-top: 4px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+
+        @media (max-width: 400px) {
+            .friend-card { padding: 14px 12px; gap: 12px; }
+            .friend-card .avatar { width: 50px; height: 50px; }
+            .friend-card .name { font-size: 1.0rem; }
+            .friend-card .desc { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="pageContainer">
+        <a href="menu.html" class="back-btn" id="backBtn">← Назад</a>
+
+        <div class="friend-card">
+            <img src="amogus.jpg" alt="Амогус" class="avatar" />
+            <div class="info">
+                <div class="name">Амогус</div>
+                <div class="desc">Лучший брадок, ибо всегда находится на нейтральной территории, такая тактика всегда помогала нам, ведь, не надо сраться из-за какой то темы)</div>
+            </div>
+        </div>
+
+        <div class="friend-card">
+            <img src="drel2.jpg" alt="Дрель№2" class="avatar" />
+            <div class="info">
+                <div class="name">Дрель№2</div>
+                <div class="desc">Тоже лучший брадок (кстати, знаю его больше всех остальных из списка). Такой же как Амогус, поэтому он лучший.</div>
+            </div>
+        </div>
+
+        <div class="friend-card">
+            <img src="ulitka.jpg" alt="Улитка" class="avatar" />
+            <div class="info">
+                <div class="name">Улитка</div>
+                <div class="desc">Вообще, думаю знаю её год, она тоже лучшая, поговорить как и со всеми другими можно на любые темы, лучшая подруга, с которой я несколько раз апал алмазную лигу.</div>
+            </div>
+        </div>
+
+        <div class="friend-card">
+            <img src="skibum.jpg" alt="Скибум" class="avatar" />
+            <div class="info">
+                <div class="name">Скибум</div>
+                <div class="desc">Человек, который можно сказать, крутой, ты хороший, я ценю это, и спасибо за то время (а именно ноябрь 2025 года).</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('backBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('pageContainer').classList.add('exit');
+            setTimeout(() => {
+                window.location.href = this.getAttribute('href');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
